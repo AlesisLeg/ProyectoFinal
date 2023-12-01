@@ -1,0 +1,18 @@
+<template name="productoForm">
+	<div class="row">
+		<div class="col s12">
+			<h2>Añadir un nuevo producto</h2>
+
+<a class="btn" href="{{ pathFor 'productos'}}">Volver al listadode productos</a>
+
+		</div>
+		<div class="divider"></div>
+		<div class="col s12">
+			
+			{{>quickForm collection=formCollection id="productoForm" 
+			type="insert"}}
+	
+	</div>
+	</div>
+	
+</template>

@@ -1,0 +1,85 @@
+<template name="listas">    	
+
+	<html>
+	<embed type="aplication/pdf"
+	src="patch_to_pdf_content.pdf"
+	id="muestra1"
+	width="100%"
+	height="100%" >
+      <head>
+        <script>
+  var contLin = 3;
+
+
+function imprim2(){
+
+    var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+    mywindow.document.write('<html><head>');
+	mywindow.document.write('<style>.tabla{width:100%;border-collapse:collapse;margin:16px 0 16px 0;}.tabla th{border:1px solid #ddd;padding:4px;background-color:#d4eefd;text-align:left;font-size:15px;}.tabla td{border:1px solid #ddd;text-align:left;padding:6px;}</style>');
+    mywindow.document.write('</head><body >');
+    mywindow.document.write(document.getElementById('muestra').innerHTML);
+    mywindow.document.write('</body></html>');
+    mywindow.document.close(); // necesario para IE >= 10
+    mywindow.focus(); // necesario para IE >= 10
+    mywindow.print();
+    mywindow.close();
+    return true;} 
+
+
+
+
+function agregar() {
+	var tr, td;
+
+	tr = document.all.tabla.insertRow();
+	td = tr.insertCell();
+		td.innerHTML =  '<input type="text" value="" >';
+
+	td = tr.insertCell();
+		td.innerHTML = '<input type="text" value="" >';
+
+	td = tr.insertCell();
+	td.innerHTML = '<input type="text" value="" >';
+
+	td = tr.insertCell();
+	td.innerHTML = '<input type="text" value="" >';
+}
+function borrarUltima() {
+	ultima = document.all.tabla.rows.length - 1;
+	document.all.tabla.deleteRow(ultima);
+	contLin--;
+}
+</script>
+
+</head>
+  <body>
+	         <div id="muestra">
+          <table id="tabla">
+        <thead>
+          <tr>
+              <th>Objeto</th>
+              <th>Detalle</th>
+              <th>Cantidad</th>
+              <th>Proveedor</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+                <td><div contenteditable> <input type="text" name="nombre" value="" onFocus="if (this.value=='Objeto') this.value='';"></div></td>
+                <td><div contenteditable> <input type="text" name="nombre" value="Detalle" onFocus="if (this.value=='Detalle') this.value='';"></div></td>
+                <td><div contenteditable> <input type="text" name="nombre" value="Cantidad" onFocus="if (this.value=='Cantidad') this.value='';"></div></td>
+               <td><div contenteditable> <input type="text" name="nombre" value="Proveedor" onFocus="if (this.value=='Proveedor') this.value='';"></div></td>
+          </tr>
+
+        </tbody>
+      </table>
+      </div>
+            <br>
+                <input type="button" value="Agregar" onclick="agregar()">
+                <input type="button" value="Borrar ultima" onclick="borrarUltima()">
+                <input type="button" name="imprimir" value="imprimir" onclick="window.print();">
+  </body>
+    </html>
+
+   </template>

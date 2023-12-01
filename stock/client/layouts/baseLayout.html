@@ -1,0 +1,31 @@
+<template name="baseLayout">
+	<nav>
+		
+
+		<div class="nav-wrapper cyan accent-4">
+
+				<a href="" class="brand-logo right black-text text-darken-2">FerreMax </a>
+
+					<ul id="nav-mobile" class="left black-text text-darken-2">
+						{{>loginButtons}}
+						{{#if currentUser}}
+
+					
+						<li><a href="{{ pathFor 'producto_form'}}" class="black-text text-darken-2">Alta stock</a></li>
+						<li><a href="{{ pathFor 'productos'}}" class="black-text text-darken-2">Stock</a></li>
+						<li><a href="{{ pathFor 'Listas'}}"  class="black-text text-darken-2">Lista de pedido</a></li>
+						<li><a href="{{ pathFor 'clientes'}}" class="black-text text-darken-2">Ventas</a></li>
+						
+				{{/if}}				
+			</ul>						
+		</div>
+
+	</nav>
+	
+
+	{{#momentum plugin="growl"}}
+		{{#if Template.subscriptionsReady}}
+			{{>yield}}
+		{{/if}}
+	{{/momentum}}
+</template>

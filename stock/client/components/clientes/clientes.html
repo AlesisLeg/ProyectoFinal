@@ -1,0 +1,88 @@
+<template name="clientes">
+	
+
+	<div class="row">
+		<h2>VENTAS</h2>						
+		<a class="btn" href="{{ pathFor 'cliente_form'}}">		
+			Añadir nueva Venta
+		</a>
+		{{> EasySearch.Input index=clientes atributes=searchAttributes}}
+   <table>
+   		<thead>
+   		<tr>
+   					<th>Cliente</th>
+   					<th>Producto</th>
+   					<th>Cantidad</th>
+   		</tr>
+   			</thead>
+				<tbody>
+			      {{#EasySearch.Each index=clientes}}
+
+<head>
+  <script>
+
+			      function agregar() {
+	var tr, td;
+
+	tr = document.all.tabla.insertRow();
+	td = tr.insertCell();
+		td.innerHTML =  '<input type="text" value="" >';
+
+	td = tr.insertCell();
+		td.innerHTML = '<input type="text" value="" >';
+
+	td = tr.insertCell();
+	td.innerHTML = '<input type="text" value="" >';
+
+	td = tr.insertCell();
+	td.innerHTML = '<input type="text" value="" >';
+}
+
+	</script>
+</head>
+
+		<tr>
+	      <td>       
+             <input id={{_id}} type="text" name="nombre" value={{name}}>   
+		  </td>
+            
+        	<td>
+			 <input id={{_id}}detalle type="text" name="detalle" value={{detalle}}> 
+		  </td> 
+
+    	  	<td> 
+
+
+                       <button id="1">+</button>
+                       <button id="2">-</button>
+                        
+
+                        <p> {{cantidad}}</p>  
+                  </td>
+			<td>
+
+	{{>cliente_links}} <br> <button id={{_id}} class="button" >Modificar</button>
+			</td>
+          </tr>
+          
+	  <td>
+		  <br>
+                <input type="button" value="Agregar" onclick="agregar()">
+</td>
+             {{/EasySearch.Each}}
+
+             </tbody>
+
+      </table>
+
+      {{#EasySearch.IfNoResults index=clientes}}
+        <p> Vacio ...</p>
+      {{/EasySearch.IfNoResults}}
+
+      {{#EasySearch.IfSearching index=clientes}}
+        <p>Buscando ...</p>
+      {{/EasySearch.IfSearching}}
+    
+      {{>EasySearch.Pagination index=clientes}}
+  </div>
+</template>
