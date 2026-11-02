@@ -8,14 +8,17 @@
 
 					<ul id="nav-mobile" class="left black-text text-darken-2">
 						{{>loginButtons}}
-						{{#if currentUser}}
+						{{#if currentUser}}   
 
-					
+						<li><a href="{{ pathFor 'profile'}}" class="black-text text-darken-2">Perfil</a></li>
 						<li><a href="{{ pathFor 'producto_form'}}" class="black-text text-darken-2">Alta stock</a></li>
 						<li><a href="{{ pathFor 'productos'}}" class="black-text text-darken-2">Stock</a></li>
 						<li><a href="{{ pathFor 'Listas'}}"  class="black-text text-darken-2">Lista de pedido</a></li>
-						<li><a href="{{ pathFor 'clientes'}}" class="black-text text-darken-2">Ventas</a></li>
-						
+						<li><a href="{{ pathFor 'clientes'}}" class="black-text text-darken-2">Clientes</a></li>
+						<li><a href="{{ pathFor 'venta_form'}}" class="black-text text-darken-2">Ventas</a></li>
+						<li><a href="{{ pathFor 'ventas'}}" class="black-text text-darken-2">Vendido</a></li>
+						<li><a href="{{ pathFor 'provedor_form'}}" class="black-text text-darken-2">Provedores</a></li>
+						<li><a href="{{ pathFor 'provedores'}}" class="black-text text-darken-2">Lista de Provedores</a></li>
 				{{/if}}				
 			</ul>						
 		</div>

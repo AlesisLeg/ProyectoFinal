@@ -1,6 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema'; //ESTA LIBRERIA CAMBIO, es diferente a la del video
-import { check } from 'meteor/check';
+import { check } from 'meteor/check';  //comprueba si puede eliminar un producto
 import { Meteor } from 'meteor/meteor';
 import { EasySearch } from 'meteor/easy:search';
 
@@ -11,13 +11,14 @@ export const Productos = new Mongo.Collection('productos');
 
 export const ProductosIndex = new EasySearch.Index({
 	collection: Productos,
-	fields: ['name', 'summary'],
-	engine: new EasySearch.Minimongo(),
-	defaultSearchOptions: {limit: 10}
+	fields: ['name'], //campos donde se quiere realizar la busqueda
+	engine: new EasySearch.Minimongo(),  //el motor
+	defaultSearchOptions: {limit: 10}		//recibe un objeto y tiene un limite de 10 para la paginacion
 })
 
 
 Productos.attachSchema(new SimpleSchema({
+
 	name: {
 		type: String,
 		label: 'Nombre del producto',
@@ -53,7 +54,7 @@ Productos.attachSchema(new SimpleSchema({
 			//class: "materialize-textarea"
 			class: "textarea"
 		}
-	}﻿,
+	},
 	
 	cantidad: {        
     type: Number,		//EL ARRAY TAMBIEN SE DEFINE DIFERENTE AL VIDEO
@@ -65,28 +66,16 @@ Productos.allow({
 	insert: function(userId, doc){
 		return doc.owner === userId;
 	},
-	update: function(userId,doc){
-		return doc.owner === userId;
-	}
+		update: function(userId,doc) {
+			return doc.owner === userId;
+		}
+
 })
 
 Meteor.methods({
-	'productos.remove'(productoId){
-		check(productoId, String);
+	'productos.remove'(productoId){       //cuando se quiera eliminar un producto, le pasa el productoId
+		check(productoId, String);		// si no es de tipo String no lo puede eliminar
 		Productos.remove(productoId);
 	}
-})
-
-Meteor.methods({
-  'productos.update'( ProductoId) {
-  	check(productoId, String);
-		
-  	Productos.update(ProductoId, {
-      $set: { cantidad:Number}
-    });
-  
-ProductosIndex = new Mongo.Collection('Productos');
-
-  }
 });
    

@@ -1,0 +1,33 @@
+<template name="ventas">
+	<div class="row">
+	  <h2>Listado de Ventas</h2>
+	  <table class="striped">
+		<thead>
+		  <tr>
+			<th>DNI del Cliente</th>
+			<th>Nombre del Cliente</th>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>Fecha</th>
+			<th>Acciones</th>
+		  </tr>
+		</thead>
+		<tbody>
+
+		  {{#each ventas}}
+			<tr>
+			  <td>{{clienteDNI}}</td>
+			  <td>{{detalleCliente}}</td>
+			  <td>{{producto}}</td>
+			  <td>{{cantidad}}</td>
+			  <td>{{fecha}}</td>
+			  <td>
+				<button class="eliminar-venta" data-id="{{_id}}">Eliminar</button> <!-- Botón de eliminación -->
+			  </td>
+			</tr>
+		  {{/each}}
+		</tbody>
+	  </table>
+	</div>
+  </template>
+  

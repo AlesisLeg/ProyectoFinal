@@ -1,17 +1,17 @@
 <template name="clienteForm">
+	<form class="form" id="crearCliente">
 	<div class="row">
 		<div class="col s12">
-			<h2>Crear nueva Venta</h2>
-<a class="btn" href="{{ pathFor 'clientes'}}">
-				Volver al listado de Ventas</a>
+			<h2>Crear nueva Cliente</h2>
+<a class="btn" href="{{ pathFor 'clientes'}}"> Volver al listado de Clientes</a>
 	</div>
 		<div class="divider"></div>
 		<div class="col s12">
 
-		{{>quickForm collection=formCollection id="clienteForm" type="insert"}}
+		{{>quickForm collection=formCollection id="clienteForm" type="insert" buttonContent="Guardar"}}
 
 	
+			</div>
 		</div>
-	</div>
-	
+	</form>
 </template>

@@ -11,7 +11,7 @@ export const Clientes = new Mongo.Collection('clientes');
 
 export const ClientesIndex = new EasySearch.Index({
 	collection: Clientes,
-	fields: ['name', 'summary'],
+	fields: ['name'],
 	engine: new EasySearch.Minimongo(),
 	defaultSearchOptions: {limit: 10}
 })
@@ -20,44 +20,53 @@ export const ClientesIndex = new EasySearch.Index({
 Clientes.attachSchema(new SimpleSchema({
 	name: {
 		type: String,
-		label: 'Nombre del Cliente',
-		max: 200
-	},
-	owner:{
-		type: String,
-		label: "Propietario",
-		autoValue() {
-			return this.userId
-		},
-		autoform: {
-			type: "hidden"
-		}
-	},
-	created: {
-		type: Date,
-		autoValue() {
-			return new Date()
-		},
-		autoform: {
-			type: "hidden"
-		}
+		label: 'DNI',
+		max: 30
 	},
 
 	detalle:{ 
 		type: String, 
-		label: 'Detalle de Producto', 
+		label: 'Nombre y apellido', 
 		optional: true, 
-		max: 2000, 
+		max: 30, 
 		autoform:{ 					//EL AUTOFORM SE DEFINE DIFERENTE AL VIDEO
 			type: "textarea", 
 			row: 10, 
 			//class: "materialize-textarea"
 			class: "textarea"
 		}
-	}﻿,
-cantidad: {
-	type: Number,
+	},
+
+direccion: {
+	type: String,
+	label: 'Direccion',
 	optional: true,
+	max: 30,
+	autoform:{ 					//EL AUTOFORM SE DEFINE DIFERENTE AL VIDEO
+			type: "textarea", 
+			row: 10, 
+			//class: "materialize-textarea"
+			class: "textarea"
+		}
+},
+owner:{
+	type: String,
+	label: "Propietario",
+	autoValue() {
+		return this.userId
+	},
+	autoform: {
+		type: "hidden"
+	}
+},
+created: {
+	type: Date,
+	autoValue() {
+		return new Date()
+	},
+	autoform: {
+		type: "hidden"
+	}
 },
 }));
 
@@ -74,15 +83,5 @@ Meteor.methods({
 	'clientes.remove'(clienteId){
 		check(clienteId, String);
 		Clientes.remove(clienteId);
-	}
-})
-
-Meteor.methods({
-	'clientes.update' (ClienteId){
-		check(clienteId, String);
-
-		Clientes.update (ClienteId, {
-			$set: { cantidad : Number}
-		});
 	}
 });

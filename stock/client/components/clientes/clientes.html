@@ -2,73 +2,47 @@
 	
 
 	<div class="row">
-		<h2>VENTAS</h2>						
+		<h2>CLIENTES</h2>						
 		<a class="btn" href="{{ pathFor 'cliente_form'}}">		
-			Añadir nueva Venta
+			Añadir nuevo Cliente
 		</a>
 		{{> EasySearch.Input index=clientes atributes=searchAttributes}}
-   <table>
+		<form class="form" id="crearClientes">
+		<table>
    		<thead>
    		<tr>
-   					<th>Cliente</th>
-   					<th>Producto</th>
-   					<th>Cantidad</th>
+   					<th>DNI</th>
+   					<th>Nombre y Apellido</th>
+   					<th>Direccion</th>
    		</tr>
    			</thead>
 				<tbody>
 			      {{#EasySearch.Each index=clientes}}
 
-<head>
-  <script>
-
-			      function agregar() {
-	var tr, td;
-
-	tr = document.all.tabla.insertRow();
-	td = tr.insertCell();
-		td.innerHTML =  '<input type="text" value="" >';
-
-	td = tr.insertCell();
-		td.innerHTML = '<input type="text" value="" >';
-
-	td = tr.insertCell();
-	td.innerHTML = '<input type="text" value="" >';
-
-	td = tr.insertCell();
-	td.innerHTML = '<input type="text" value="" >';
-}
-
-	</script>
-</head>
 
 		<tr>
 	      <td>       
-             <input id={{_id}} type="text" name="nombre" value={{name}}>   
+             <ul id={{_id}} type="text" name="DNI"> {{name}} </ul>   
 		  </td>
             
         	<td>
-			 <input id={{_id}}detalle type="text" name="detalle" value={{detalle}}> 
+			 <ul id={{_id}} type="text" name="detalle"> {{detalle}} </ul> 
 		  </td> 
 
-    	  	<td> 
+		  <td>
+			<ul id={{_id}} type="text" name="direccion"> {{direccion}} </ul>
+		</td> 
+		<td>
 
+			<span class="right">
+				<a	href= "#" class="remove">
+					<i class="material-icons">Eliminar</i>
+				</a>
+			</span>
 
-                       <button id="1">+</button>
-                       <button id="2">-</button>
-                        
-
-                        <p> {{cantidad}}</p>  
-                  </td>
-			<td>
-
-	{{>cliente_links}} <br> <button id={{_id}} class="button" >Modificar</button>
-			</td>
-          </tr>
+		</td>
+        </tr>
           
-	  <td>
-		  <br>
-                <input type="button" value="Agregar" onclick="agregar()">
-</td>
              {{/EasySearch.Each}}
 
              </tbody>
@@ -76,7 +50,7 @@
       </table>
 
       {{#EasySearch.IfNoResults index=clientes}}
-        <p> Vacio ...</p>
+        <p> No hay Clientes...</p>
       {{/EasySearch.IfNoResults}}
 
       {{#EasySearch.IfSearching index=clientes}}
@@ -84,5 +58,6 @@
       {{/EasySearch.IfSearching}}
     
       {{>EasySearch.Pagination index=clientes}}
-  </div>
+		</form>
+	</div>
 </template>

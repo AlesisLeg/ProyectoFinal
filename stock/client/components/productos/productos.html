@@ -1,54 +1,65 @@
 <template name="productos">
-   {{> EasySearch.Input index=productos atributes=searchAttributes}}
-   <table>
-   <thead>
 
-       <tr>
-    	   <th>Producto</th>
-	  	   <th>Detalle</th>
-        	<th>Cantidad</th>
-	   </tr>
+  <div class="row">
 
-      </thead>
-	         <tbody>
-			       {{#EasySearch.Each index=productos}}
-	<tr>    
-        <td>
-        <input id={{_id}} type="text" name="nombre" value={{name}}>   
-
-        </td>
-              <td>
-            <input id={{_id}}detalle type="text" name="detalle" value={{detalle}}> 
-
-                  </td>
-		              <td>
-
-                        <button id="1">+</button>
-                        <button id="2">-</button>
-                        
-
-                           <p> {{cantidad}}</p>
-                  </td>
-                   <td >
-            {{>producto_links}} <br> <button id={{_id}} class="button" >Modificar
-                   </button>
-                   </td>
-          </tr>
-
-             {{/EasySearch.Each}}
-
-             </tbody>
-
-      </table>
-
-      {{#EasySearch.IfNoResults index=productos}}
-        <p> No hay ningun producto ...</p>
-      {{/EasySearch.IfNoResults}}
-
-      {{#EasySearch.IfSearching index=productos}}
-        <p>Buscando ...</p>
-      {{/EasySearch.IfSearching}}
-    
-      {{>EasySearch.Pagination index=productos}}
-  
+		<h2>STOCK</h2>
+	
+	   {{> EasySearch.Input index=productos atributes=searchAttributes}}
+	  
+	   <table>
+		  <thead>
+	
+			  <tr>
+					<th>Producto</th>
+					  <th>Detalle</th>
+					<th>Cantidad</th>
+				</tr>
+	
+		  </thead>
+		   
+		  <tbody>
+					   {{#EasySearch.Each index=productos}} 
+			  <tr>    
+				<td>
+					<ul id={{_id}} type="text" name="nombre"> {{name}}</ul>
+	
+				</td>
+			   <td>
+					 <ul id={{_id}} type="text" name="detalle">{{detalle}}</ul> 
+	
+				</td>
+				<td>
+					<p> {{cantidad}}</p>
+				</td>
+				<td>
+				  <button id="1">+</button>
+				  <button id="2">-</button>
+			  </td>
+	<td>
+	  <span class="right">
+		<a href="#" class="remove">
+		  <i class="material-icons">Eliminar</i>
+		</a>
+	  </span>
+	</td>
+				
+				</tr>
+			<br>
+				 {{/EasySearch.Each}}
+	
+		   </tbody>
+	
+		</table>
+	
+		  {{#EasySearch.IfNoResults index=productos}}
+		  <li class="collection-item">No hay ningun producto ..</li>
+		  {{/EasySearch.IfNoResults}}
+	
+		  {{#EasySearch.IfSearching index=productos}}  
+			<li class="collection-item">Buscando</li>
+		  {{/EasySearch.IfSearching}}
+		
+		  {{>EasySearch.Pagination index=productos}}  
+		</div> 
+ 
 </template>
